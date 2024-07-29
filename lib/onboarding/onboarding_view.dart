@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:in_porto/homepage/homepage_view.dart';
 
 class OnboardingView extends StatefulWidget {
   const OnboardingView({super.key});
@@ -10,13 +11,13 @@ class OnboardingView extends StatefulWidget {
 class _OnboardingViewState extends State<OnboardingView> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Color.fromRGBO(25, 25, 25, 1.0),
+    return Scaffold(
+      backgroundColor: const Color.fromRGBO(25, 25, 25, 1.0),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
+            const Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -56,11 +57,14 @@ class _OnboardingViewState extends State<OnboardingView> {
             ),
             Column(
               children: [
-                TextButton(
+                const TextButton(
                   onPressed: null, // Does nothing for now
                   child: Text(
                     'Continue with Google',
                     style: TextStyle(
+                      decoration: TextDecoration.lineThrough,
+                      decorationThickness: 1.5,
+                      decorationColor: Colors.red,
                       color: Color(0xFFF8F8FF),
                       fontSize: 16,
                       fontFamily: 'Manrope',
@@ -68,18 +72,23 @@ class _OnboardingViewState extends State<OnboardingView> {
                     ),
                   ),
                 ),
-                SizedBox(height: 30),
-                Text(
-                  'Use without an account',
-                  style: TextStyle(
-                    color: Color(0xFFF8F8FF),
-                    fontSize: 16,
-                    fontFamily: 'Manrope',
-                    fontWeight: FontWeight.w700,
-                    height: 0.09,
+                const SizedBox(height: 20),
+                TextButton(
+                  onPressed: (){
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const HomepageView()));
+                  },
+                  child: const Text(
+                    'Use without an account',
+                    style: TextStyle(
+                      color: Color(0xFFF8F8FF),
+                      fontSize: 16,
+                      fontFamily: 'Manrope',
+                      fontWeight: FontWeight.w700,
+                      height: 0.09,
+                    ),
                   ),
-                ),
-                SizedBox(height: 50), // Optional spacing between text field and bottom
+                  ),
+                const SizedBox(height: 40), // Optional spacing between text field and bottom
               ],
             ),
           ],
