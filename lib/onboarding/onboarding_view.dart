@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:in_porto/homepage/homepage_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OnboardingView extends StatefulWidget {
   const OnboardingView({super.key});
@@ -60,12 +61,10 @@ class _OnboardingViewState extends State<OnboardingView> {
                 const TextButton(
                   onPressed: null, // Does nothing for now
                   child: Text(
-                    'Continue with Google',
+                    'Continue with Google\n(Not available)',
+                    textAlign: TextAlign.center,
                     style: TextStyle(
-                      decoration: TextDecoration.lineThrough,
-                      decorationThickness: 1.5,
-                      decorationColor: Colors.red,
-                      color: Color(0xFFF8F8FF),
+                      color: Color(0xFF494949),
                       fontSize: 16,
                       fontFamily: 'Manrope',
                       fontWeight: FontWeight.w700,
@@ -74,11 +73,19 @@ class _OnboardingViewState extends State<OnboardingView> {
                 ),
                 const SizedBox(height: 20),
                 TextButton(
-                  onPressed: (){
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const HomepageView()));
+                  onPressed: () async {
+                    final currentContext = context;
+                    final prefs = await SharedPreferences.getInstance();
+                    await prefs.setBool("hasSeenOnboarding", true);
+
+                    if (!currentContext.mounted) return;
+                    Navigator.pushReplacement(
+                        currentContext,
+                        MaterialPageRoute(
+                            builder: (context) => const HomepageView()));
                   },
                   child: const Text(
-                    'Use without an account',
+                    'Get started',
                     style: TextStyle(
                       color: Color(0xFFF8F8FF),
                       fontSize: 16,
@@ -87,8 +94,9 @@ class _OnboardingViewState extends State<OnboardingView> {
                       height: 0.09,
                     ),
                   ),
-                  ),
-                const SizedBox(height: 40), // Optional spacing between text field and bottom
+                ),
+                const SizedBox(height: 40),
+                // Optional spacing between text field and bottom
               ],
             ),
           ],
