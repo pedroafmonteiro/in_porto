@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:in_porto/homepage/homepage_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -13,6 +14,17 @@ class _OnboardingViewState extends State<OnboardingView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          systemNavigationBarColor: Color.fromRGBO(25, 25, 25, 1.0),
+          statusBarColor: Colors.transparent,
+          statusBarBrightness: Brightness.light,
+          statusBarIconBrightness: Brightness.light,
+        ),
+      ),
       backgroundColor: const Color.fromRGBO(25, 25, 25, 1.0),
       body: Center(
         child: Column(
