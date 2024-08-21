@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:in_porto/homepage/homepage_view.dart';
+import 'package:in_porto/screens/home/home_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class OnboardingView extends StatefulWidget {
@@ -94,7 +94,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                     Navigator.pushReplacement(
                         currentContext,
                         MaterialPageRoute(
-                            builder: (context) => const HomepageView()));
+                            builder: (context) => const HomeView()));
                   },
                   child: const Text(
                     'Get started',

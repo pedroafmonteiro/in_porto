@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:in_porto/homepage/homepage_view.dart';
-import 'package:in_porto/onboarding/onboarding_view.dart';
+import 'package:in_porto/screens/home/home_view.dart';
+import 'package:in_porto/screens/onboarding/onboarding_view.dart';
 import 'package:in_porto/theme.dart';
+import 'package:in_porto/notifiers/theme_notifier.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = await SharedPreferences.getInstance();
   final onboarding = prefs.getBool("hasSeenOnboarding") ?? false;
-  runApp(MainApp(onboarding: onboarding));
+  runApp(ChangeNotifierProvider(
+      create: (context) => ThemeNotifier(),
+      child: MainApp(onboarding: onboarding)),
+  );
 }
 
 class MainApp extends StatelessWidget {
@@ -18,12 +23,16 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.light,
-      home: onboarding ? const HomepageView() : const OnboardingView(),
+    return Consumer<ThemeNotifier>(
+      builder: (context, notifier, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode: notifier.themeMode,
+          home: onboarding ? const HomeView() : const OnboardingView(),
+        );
+      },
     );
   }
 }
