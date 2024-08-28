@@ -17,17 +17,28 @@ class _ThemeWidgetState extends State<ThemeWidget> {
         themeNotifier.themeMode.toString().split('.').last;
 
     return ListTile(
-        title: const Text('Theme'),
-        subtitle:
-            Text(currentTheme[0].toUpperCase() + currentTheme.substring(1)),
-        leading: const Icon(Icons.dark_mode_rounded),
-        onTap: () {
-          showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return const ThemeDialog();
-              });
-        });
+      title: Text(
+        'Theme',
+        style: Theme.of(context).textTheme.bodyLarge,
+      ),
+      subtitle: Text(currentTheme[0].toUpperCase() + currentTheme.substring(1)),
+      leading: Icon(
+        Icons.dark_mode_rounded,
+        color: Theme.of(context).iconTheme.color,
+      ),
+      trailing: Icon(
+        Icons.arrow_forward_ios_rounded,
+        color: Theme.of(context).iconTheme.color,
+      ),
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return const ThemeDialog();
+          },
+        );
+      },
+    );
   }
 }
 
