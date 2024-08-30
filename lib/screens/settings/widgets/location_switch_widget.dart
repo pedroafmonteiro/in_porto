@@ -47,11 +47,38 @@ class _LocationSwitchWidgetState extends State<LocationSwitchWidget> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Warning'),
-          content: const Text(
-            'Turning off location features will make the "My location" button unavailable on the home screen and turn off nearby places features.\n'
-            'This option does not revoke the location permission for the app. You must manually do so if desired.\n'
-            'The app will restart to apply the changes.',
+          title: Text(
+            'Warning',
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          content: RichText(
+            text: TextSpan(
+              style: Theme.of(context).textTheme.bodyLarge,
+              children: const <TextSpan>[
+                TextSpan(
+                  text:
+                      'Disabling location features will prevent the app from accessing your location. '
+                      'This will affect the app\'s functionality: \n\n',
+                ),
+                TextSpan(
+                  text:
+                      '• The "My Location" button on the home screen will be hidden, and your current location will no longer be displayed on the map.\n'
+                      '• The Nearby Places feature will be disabled.\n\n',
+                ),
+                TextSpan(
+                  text: 'Note: ',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                TextSpan(
+                  text:
+                      'Disabling location features in this app does not revoke location permissions. To fully disable location access, please adjust the app\'s permissions manually in your device settings.\n\n',
+                ),
+                TextSpan(
+                  text: 'The app will restart to apply these changes.',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
           ),
           actions: <Widget>[
             TextButton(

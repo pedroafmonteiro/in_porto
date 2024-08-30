@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:in_porto/services/location_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocationNotifier extends ChangeNotifier {
@@ -6,6 +7,7 @@ class LocationNotifier extends ChangeNotifier {
   final String _locationStatusKey = 'locationStatus';
   bool _locationFeatures = true;
   final String _locationFeaturesKey = 'locationFeatures';
+  LocationService? _locationService;
 
   LocationNotifier() {
     _loadLocationStatus();
@@ -13,6 +15,16 @@ class LocationNotifier extends ChangeNotifier {
     if (locationFeatures == false) {
       resetLocationStatus();
     }
+  }
+
+  void notify() {
+    notifyListeners();
+  }
+
+  LocationService? get locationService => _locationService;
+
+  void setLocationService(LocationService locationService) {
+    _locationService = locationService;
   }
 
   int get locationStatus => _locationStatus;

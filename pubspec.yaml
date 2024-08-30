@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_native_splash: ^2.4.1
   geolocator: ^13.0.1
   google_fonts: ^6.2.1
   google_maps_flutter: ^2.9.0
@@ -26,3 +27,22 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+flutter_native_splash:
+  color: "#F7F7F7"
+  color_dark: "#08100C"
+  image: assets/images/logo.png
+  image_dark: assets/images/logo-dark-background.png
+  android: true
+  ios: true
+  web: true
+  android_12:
+      color: "#F7F7F7"
+      color_dark: "#08100C"
+      image: assets/images/logo.png
+      image_dark: assets/images/logo-dark-background.png
+#  resize_mode: contain
+#  android_gravity: center
+#  ios_content_mode: scaleAspectFit
+#  android_disable_fullscreen: true
+#  ios_disable_fullscreen: true

@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:in_porto/notifiers/location_notifier.dart';
-import 'package:in_porto/services/location_service.dart';
-import 'package:provider/provider.dart';
 
 class LocationWidget extends StatefulWidget {
-  const LocationWidget({super.key});
+  final LocationNotifier locationNotifier;
+
+  const LocationWidget({super.key, required this.locationNotifier});
 
   @override
   State<LocationWidget> createState() => _LocationWidgetState();
 }
 
 class _LocationWidgetState extends State<LocationWidget> {
-
   @override
   Widget build(BuildContext context) {
-    final locationNotifier = Provider.of<LocationNotifier>(context);
-    final int currentLocationStatus = locationNotifier.locationStatus;
-
     return SafeArea(
       child: Align(
         alignment: Alignment.bottomRight,
@@ -32,10 +28,10 @@ class _LocationWidgetState extends State<LocationWidget> {
               ),
               elevation: 6,
               child: IconButton(
-                onPressed: () {
-                  LocationService(locationNotifier, context).updateLocationStatus();
+                onPressed: () async {
+                  await widget.locationNotifier.locationService?.updateLocationStatus();
                 },
-                icon: _iconStatus(currentLocationStatus),
+                icon: _iconStatus(widget.locationNotifier.locationStatus),
                 color: Theme.of(context).iconTheme.color,
               )),
         ),

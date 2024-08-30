@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:in_porto/screens/home/widgets/bottom_widget.dart';
-import 'package:in_porto/screens/home/widgets/location_widget.dart';
-import 'package:in_porto/screens/home/widgets/map_widget.dart';
 import 'package:provider/provider.dart';
-
 import '../../notifiers/location_notifier.dart';
+import '../../services/location_service.dart';
+import 'widgets/map_widget.dart';
+import 'widgets/location_widget.dart';
+import 'widgets/bottom_widget.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -18,7 +18,8 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     final locationNotifier = Provider.of<LocationNotifier>(context);
-    final locationFeatures = locationNotifier.locationFeatures;
+    final locationService = LocationService(locationNotifier, context);
+    locationNotifier.setLocationService(locationService);
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -47,9 +48,9 @@ class _HomeViewState extends State<HomeView> {
       ),
       body: Stack(
         children: [
-          const MapWidget(),
-          if (locationFeatures)
-            const LocationWidget(),
+          MapWidget(locationNotifier: locationNotifier),
+          if (locationNotifier.locationFeatures)
+            LocationWidget(locationNotifier: locationNotifier),
           const BottomWidget()
         ],
       ),

@@ -2,14 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:in_porto/screens/settings/widgets/location_switch_widget.dart';
 import 'package:in_porto/screens/settings/widgets/theme_widget.dart';
 
-class SettingsView extends StatefulWidget {
+class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
 
-  @override
-  State<SettingsView> createState() => _SettingsViewState();
-}
-
-class _SettingsViewState extends State<SettingsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

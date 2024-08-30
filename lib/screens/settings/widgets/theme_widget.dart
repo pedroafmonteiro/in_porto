@@ -56,7 +56,10 @@ class _ThemeDialogState extends State<ThemeDialog> {
     final themeMode = themeNotifier.themeMode;
 
     return AlertDialog(
-      title: const Text('Theme'),
+      title: Text(
+        'Theme',
+        style: Theme.of(context).textTheme.titleLarge,
+      ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
