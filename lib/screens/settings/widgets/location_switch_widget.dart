@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restart_app/restart_app.dart';
 
-import '../../../notifiers/location_notifier.dart';
+import '../../../providers/location_provider.dart';
 
 class LocationSwitchWidget extends StatefulWidget {
   const LocationSwitchWidget({super.key});

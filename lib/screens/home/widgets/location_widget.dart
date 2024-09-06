@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:in_porto/notifiers/location_notifier.dart';
+import 'package:in_porto/providers/location_provider.dart';
 
 class LocationWidget extends StatefulWidget {
   final LocationNotifier locationNotifier;
@@ -18,8 +18,8 @@ class _LocationWidgetState extends State<LocationWidget> {
         alignment: Alignment.bottomRight,
         child: Padding(
           padding: EdgeInsets.only(
-            bottom: MediaQuery.of(context).size.height * 0.12,
-            right: MediaQuery.of(context).size.width * 0.025,
+            bottom: MediaQuery.sizeOf(context).height * 0.12,
+            right: MediaQuery.sizeOf(context).width * 0.025,
           ),
           child: Material(
               color: Theme.of(context).primaryColor,

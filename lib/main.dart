@@ -4,11 +4,11 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
 import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
-import 'package:in_porto/notifiers/theme_notifier.dart';
-import 'package:in_porto/screens/home/home_view.dart';
-import 'package:in_porto/screens/onboarding/onboarding_view.dart';
-import 'package:in_porto/theme.dart';
-import 'notifiers/location_notifier.dart';
+import 'providers/theme_provider.dart';
+import 'screens/home/home_view.dart';
+import 'screens/onboarding/onboarding_view.dart';
+import 'theme.dart';
+import 'providers/location_provider.dart';
 
 
 void main() async {

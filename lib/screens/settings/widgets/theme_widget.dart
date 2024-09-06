@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:in_porto/notifiers/theme_notifier.dart';
+import 'package:in_porto/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 class ThemeWidget extends StatefulWidget {

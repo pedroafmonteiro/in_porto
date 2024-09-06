@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import '../../../notifiers/location_notifier.dart';
+import '../../../providers/location_provider.dart';
 import 'package:in_porto/values.dart';
 
 class MapWidget extends StatefulWidget {
@@ -32,14 +32,15 @@ class _MapWidgetState extends State<MapWidget> {
           zoom: 12.0,
         ),
         padding: EdgeInsets.only(
-          bottom: MediaQuery.of(context).size.height * 0.13,
-          left: MediaQuery.of(context).size.width * 0.025,
+          bottom: MediaQuery.sizeOf(context).height * 0.13,
+          left: MediaQuery.sizeOf(context).width * 0.025,
         ),
         myLocationEnabled: (widget.locationNotifier.locationStatus == 4) ? true : false,
         myLocationButtonEnabled: false,
         zoomControlsEnabled: false,
         compassEnabled: false,
         rotateGesturesEnabled: false,
+        buildingsEnabled: false,
       ),
     );
   }

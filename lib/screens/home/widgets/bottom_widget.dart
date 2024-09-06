@@ -22,8 +22,8 @@ class _BottomWidgetState extends State<BottomWidget> {
             color: Theme.of(context).primaryColor,
             child: ConstrainedBox(
               constraints: BoxConstraints(
-                maxHeight: MediaQuery.of(context).size.height * 0.10,
-                maxWidth: MediaQuery.of(context).size.width * 0.95,
+                maxHeight: MediaQuery.sizeOf(context).height * 0.10,
+                maxWidth: MediaQuery.sizeOf(context).width * 0.95,
               ),
               child: const Padding(
                 padding: EdgeInsets.all(10.0),

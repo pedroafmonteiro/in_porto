@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:in_porto/notifiers/location_notifier.dart';
+import 'package:in_porto/providers/location_provider.dart';
 
 import 'dialogs/location_dialogs.dart';
 

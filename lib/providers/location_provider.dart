@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:in_porto/services/location_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../services/location_service.dart';
 
 class LocationNotifier extends ChangeNotifier {
   int _locationStatus = 0;
