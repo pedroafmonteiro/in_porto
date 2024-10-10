@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:in_porto/parsers/gtfs_parser.dart';
 import 'package:provider/provider.dart';
 import '../../providers/gtfs_provider.dart';
 import '../../providers/location_provider.dart';
-import '../../services/location_service.dart';
 import '../../services/ckan_service.dart';
 import '../../services/download_service.dart';
+import '../../services/location_service.dart';
 import '../../utils/file_utils.dart';
 import 'widgets/map_widget.dart';
 import 'widgets/location_widget.dart';
@@ -25,7 +24,6 @@ class _HomeViewState extends State<HomeView> {
   void initState() {
     super.initState();
     _fetchData();
-    _parseData();
   }
 
   void _fetchData() async {
@@ -34,17 +32,6 @@ class _HomeViewState extends State<HomeView> {
     final fileUtils = FileUtils();
     final gtfsProvider = GTFSProvider(ckanService, downloadService, fileUtils);
     await gtfsProvider.fetchGTFSData('horarios-paragens-e-rotas-em-formato-gtfs', 'metro_do_porto');
-  }
-
-  void _parseData() async {
-    final fileUtils = FileUtils();
-    final folderPath = await fileUtils.getLocalPath();
-
-    final parser = GTFSParser('$folderPath/metro_do_porto');
-
-    final agency = await parser.parseAgency();
-
-    print('Agency: $agency');
   }
 
   @override
@@ -81,7 +68,6 @@ class _HomeViewState extends State<HomeView> {
       body: Stack(
         children: [
           MapWidget(locationNotifier: locationNotifier),
-          Center(child: TextButton(onPressed: _parseData, child: const Text('Parse Data'))),
           if (locationNotifier.locationFeatures)
             LocationWidget(locationNotifier: locationNotifier),
           const BottomWidget()
