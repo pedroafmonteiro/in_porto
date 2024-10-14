@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_native_splash: ^2.4.1
+  flutter_svg: ^2.0.10+1
   geolocator: ^13.0.1
   google_fonts: ^6.2.1
   google_maps_flutter: ^2.9.0
@@ -30,6 +31,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/agencies/
 
 flutter_native_splash:
   color: "#F7F7F7"

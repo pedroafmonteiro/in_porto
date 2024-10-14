@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:in_porto/providers/markers_provider.dart';
 import 'package:provider/provider.dart';
 import '../../providers/gtfs_provider.dart';
 import '../../providers/location_provider.dart';
@@ -36,6 +37,7 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
+    final markersProvider = Provider.of<MarkersProvider>(context);
     final locationNotifier = Provider.of<LocationNotifier>(context);
     final locationService = LocationService(locationNotifier, context);
     locationNotifier.setLocationService(locationService);
@@ -67,7 +69,7 @@ class _HomeViewState extends State<HomeView> {
       ),
       body: Stack(
         children: [
-          MapWidget(locationNotifier: locationNotifier),
+          MapWidget(locationNotifier: locationNotifier, markersProvider: markersProvider),
           if (locationNotifier.locationFeatures)
             LocationWidget(locationNotifier: locationNotifier),
           const BottomWidget()

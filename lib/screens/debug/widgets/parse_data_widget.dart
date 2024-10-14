@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../parsers/gtfs_parser.dart';
+import '../../../providers/markers_provider.dart';
 import '../../../utils/file_utils.dart';
 
 class ParseDataWidget extends StatelessWidget {
@@ -8,6 +10,8 @@ class ParseDataWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final markersProvider = Provider.of<MarkersProvider>(context);
+
     return ListTile(
       title: Text(
         'Parse data',
@@ -18,19 +22,20 @@ class ParseDataWidget extends StatelessWidget {
         color: Theme.of(context).iconTheme.color,
       ),
       onTap: () {
-        _parseData();
+        _parseData(markersProvider);
       },
     );
   }
 
-  void _parseData() async {
+  void _parseData(MarkersProvider markersProvider) async {
     final fileUtils = FileUtils();
     final folderPath = await fileUtils.getLocalPath();
 
     final parser = GTFSParser('$folderPath/metro_do_porto');
 
-    final agency = await parser.parseAgency();
+    final stops = await parser.parseStops();
+    markersProvider.updateMarkersWithStops(stops);
 
-    print('Agency: $agency');
+    print('Stops: $stops');
   }
 }

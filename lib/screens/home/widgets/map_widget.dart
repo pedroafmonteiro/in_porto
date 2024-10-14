@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:in_porto/providers/markers_provider.dart';
 import '../../../providers/location_provider.dart';
 import 'package:in_porto/values.dart';
 
 class MapWidget extends StatefulWidget {
   final LocationNotifier locationNotifier;
+  final MarkersProvider markersProvider;
 
-  const MapWidget({super.key, required this.locationNotifier});
+  const MapWidget({super.key, required this.locationNotifier, required this.markersProvider});
 
   @override
   State<MapWidget> createState() => _MapWidgetState();
@@ -41,6 +43,9 @@ class _MapWidgetState extends State<MapWidget> {
         compassEnabled: false,
         rotateGesturesEnabled: false,
         buildingsEnabled: false,
+        markers: widget.markersProvider.markers,
+        mapToolbarEnabled: false,
+        indoorViewEnabled: false,
       ),
     );
   }

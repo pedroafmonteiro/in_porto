@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:in_porto/providers/markers_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
@@ -9,7 +10,6 @@ import 'screens/home/home_view.dart';
 import 'screens/onboarding/onboarding_view.dart';
 import 'theme.dart';
 import 'providers/location_provider.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,6 +30,7 @@ void main() async {
         ChangeNotifierProvider(
           create: (context) => LocationNotifier(),
         ),
+        ChangeNotifierProvider(create: (context) => MarkersProvider()),
       ],
       child: MainApp(onboarding: onboarding),
     ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:in_porto/screens/debug/widgets/clear_data_widget.dart';
 import 'package:in_porto/screens/debug/widgets/parse_data_widget.dart';
 
 class DebugView extends StatelessWidget {
@@ -21,6 +22,7 @@ class DebugView extends StatelessWidget {
       body: const Column(
         children: [
           ParseDataWidget(),
+          ClearDataWidget(),
         ],
       ),
     );

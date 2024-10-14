@@ -19,6 +19,7 @@ class SettingsView extends StatelessWidget {
               Navigator.of(context).pop();
             },
           ),
+          actionsIconTheme: Theme.of(context).iconTheme,
           actions: [
             IconButton(
               onPressed: () {
